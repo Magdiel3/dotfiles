@@ -28,3 +28,6 @@ bindkey -M viins 'j' vi-jj-exit
 COMPLETIONS_FILE="${HOME}/.zsh/completions.zsh"
 [[ -f ${COMPLETIONS_FILE} ]] && source ${COMPLETIONS_FILE}
 
+# Source the Pure prompt
+PROMPT_SETUP_FILE="${HOME}/.zsh/prompt_setup.zsh"
+[[ -f $PROMPT_SETUP_FILE ]] && source ${PROMPT_SETUP_FILE}

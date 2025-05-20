@@ -1,0 +1,71 @@
+format = """
+$directory\
+$git_branch\
+$python\
+$character"""
+
+right_format = """
+$hostname\
+$status\
+$cmd_duration\
+$time"""
+
+add_newline = false
+
+[username]
+style_root = 'bold white'
+format = '[$user]($style)'
+show_always = false
+
+[hostname]
+ssh_only = true
+format = '[$hostname]($style) '
+style = 'dimmed yellow'
+detect_env_vars = ['!TMUX', 'SSH_CONNECTION']
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+style = "fg:33"
+repo_root_style = "fg:39"
+fish_style_pwd_dir_length = 3
+
+[directory.substitutions]
+'~/repos/' = '~r/'
+
+[git_branch]
+format = "[$branch]($style) "
+style = "green"
+
+# [git_state]
+# format = '[\($state( $progress_current of $progress_total)\)]($style) '
+# cherry_pick = '[🍒 PICKING](bold red)'
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "fg:222"
+
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"
+
+[time]
+disabled = false
+style = 'bright-black'
+format = '[$time]($style) '
+time_format = '%T'
+
+[status]
+disabled = false
+style = "red"
+# symbol = ""
+# symbol = "󰬅"
+pipestatus = true
+pipestatus_format = "$pipestatus($style) "
+pipestatus_segment_format = "[$status]($style)"
+format = "[$status - $common_meaning]($style) "
