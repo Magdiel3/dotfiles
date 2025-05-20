@@ -1,0 +1,24 @@
+[global_config]
+  window_state = fullscreen
+  tab_position = hidden
+  scroll_tabbar = True
+  homogeneous_tabbar = False
+[keybindings]
+[profiles]
+  [[default]]
+    background_color = "#1c1c1c"
+    cursor_color = "#aaaaaa"
+    font = BitstromWera Nerd Font Bold 14
+    scrollbar_position = hidden
+    scrollback_lines = 10000
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+[plugins]
