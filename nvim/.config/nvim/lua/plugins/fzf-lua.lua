@@ -49,9 +49,18 @@ return {
         },
         {
             "<leader>fh",
-            function()
-                require("fzf-lua").helptags()
-            end,
+            function() require("fzf-lua").helptags({
+                actions   = {
+                    -- Use the default vertival split help opener
+                    --["default"]  = require("fzf-lua").actions.help_vert,
+                    -- Use a custom max_width vertical split
+                    ["default"] = function(selected, opts)
+                        if selected == 0 then return end
+                        require("fzf-lua").actions.help_vert(selected, opts)
+                        vim.cmd("vert res 80")
+                    end
+                },
+            }) end,
             desc = "[F]ind [H]elp",
         },
         {
