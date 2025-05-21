@@ -23,14 +23,13 @@ return {
                             local colorscheme = selected[1]
                             vim.cmd.colorscheme(colorscheme)
 
-                            -- Update the config file directly
+                            -- Update the config file directly calling colorescheme and setting var
                             local config_file = vim.fn.stdpath("config") .. "/lua/current-theme.lua"
-                            vim.notify("config path is: " .. config_file)
-
-                            -- Replace the colorscheme line
-                            local new_command = string.format('vim.cmd("colorscheme %s")', colorscheme)
-
-                            --vim.fn.writefile(new_command, config_file)
+                            local new_command = string.format(
+                                'vim.cmd("colorscheme %s")\nvim.g.colors_name = "%s"\n',
+                                colorscheme, colorscheme
+                            )
+                            -- Write the file
                             local file = io.open(config_file, "w")
                             if file then
                                 file:write(new_command)
@@ -57,7 +56,7 @@ return {
                     ["default"] = function(selected, opts)
                         if selected == 0 then return end
                         require("fzf-lua").actions.help_vert(selected, opts)
-                        vim.cmd("vert res 80")
+                        vim.cmd("vert res 85")
                     end
                 },
             }) end,
