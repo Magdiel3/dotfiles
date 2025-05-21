@@ -47,9 +47,9 @@ vim.keymap.set("n", "Q", "<nop>")
 -- Prevent x from overriding current copy
 vim.keymap.set("n", "x", '"_x', opts)
 
--- Replace the word cursor is on globally
-vim.keymap.set("n", "<leader>pR", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    { desc = "Replace word cursor is on globally" })
+-- -- Replace the word cursor is on globally
+-- vim.keymap.set("n", "<leader>pR", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+--    { desc = "Replace word cursor is on globally" })
 
 -- -- Executes shell command from in here making file executable
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "makes file executable" })
