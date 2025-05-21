@@ -24,6 +24,9 @@ function vi-jj-exit() {
 zle -N vi-jj-exit
 bindkey -M viins 'j' vi-jj-exit
 
+# Set the editor to nvim
+EDITOR=nvim
+
 # Source the configure completions
 COMPLETIONS_FILE="${HOME}/.zsh/completions.zsh"
 [[ -f ${COMPLETIONS_FILE} ]] && source ${COMPLETIONS_FILE}
