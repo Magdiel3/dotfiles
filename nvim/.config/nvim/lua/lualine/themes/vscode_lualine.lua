@@ -18,32 +18,32 @@ local colors = {
 }
 
 return {
-  normal =      {
+  normal = {
       a = { fg = colors.fg,         bg = colors.dark_blue },
       b = { fg = colors.fg,         bg = colors.accent },
       c = { fg = colors.fg,         bg = colors.accent },
   },
-  insert =      {
+  insert = {
       a = { fg = colors.fg,         bg = colors.green },
       b = { fg = colors.fg,         bg = colors.accent },
       c = { fg = colors.fg,         bg = colors.accent },
   },
-  visual =      {
+  visual = {
       a = { fg = colors.fg,         bg = colors.magenta },
       b = { fg = colors.fg,         bg = colors.accent },
       c = { fg = colors.fg,         bg = colors.accent },
   },
-  replace =     {
+  replace = {
       a = { fg = colors.fg,         bg = colors.red },
       b = { fg = colors.fg,         bg = colors.accent },
       c = { fg = colors.fg,         bg = colors.accent },
   },
-  command =     {
+  command = {
       a = { fg = colors.bg,         bg = colors.yellow },
       b = { fg = colors.fg,         bg = colors.accent },
       c = { fg = colors.fg,         bg = colors.accent },
   },
-  inactive =    {
+  inactive = {
       a = { fg = colors.light_gray, bg = colors.gray },
       b = { fg = colors.light_gray, bg = colors.gray },
       c = { fg = colors.light_gray, bg = colors.gray },
