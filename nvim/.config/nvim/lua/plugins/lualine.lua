@@ -44,6 +44,17 @@ local function custom_location()
     end
 end
 
+-- Custom encoding display
+-- If the encoding is the expected local encoding, omit pringing it
+local function custom_encoding()
+    local enc = (vim.bo.fenc or vim.go.enc)
+    local ret, _
+    ret = enc
+    if vim.bo.fileformat == "unix" then
+        ret, _ = enc:gsub("^utf%-8$","") -- Note: % escapes -
+    return ret
+end
+
 return {
     {
         'nvim-lualine/lualine.nvim',
@@ -95,7 +106,7 @@ return {
                                 return ("%s: %s"):format(style, widht)
                             end,
                         },
-                        { "encoding" },
+                        { custom_encoding },
                         {
                             "fileformat",
                             icons_enabled = false,

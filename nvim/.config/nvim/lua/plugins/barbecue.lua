@@ -7,7 +7,14 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     show_modified = true,
-    opts = {},
+    lazy = false,
+    config = function()
+        local bbq = require("barbecue")
+        bbq.setup()
+        local bbq_ui = require("barbecue.ui")
+        bbq_ui.toggle(true)
+        bbq_ui.update()
+    end,
     keys = {
         {
             "<leader>st",
