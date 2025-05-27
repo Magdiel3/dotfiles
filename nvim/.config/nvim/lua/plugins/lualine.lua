@@ -48,10 +48,12 @@ end
 -- If the encoding is the expected local encoding, omit pringing it
 local function custom_encoding()
     local enc = (vim.bo.fenc or vim.go.enc)
-    local ret, _
+    local ret = enc
+    local _
     ret = enc
     if vim.bo.fileformat == "unix" then
         ret, _ = enc:gsub("^utf%-8$","") -- Note: % escapes -
+    end
     return ret
 end
 
@@ -66,7 +68,6 @@ return {
                         require("current-theme")
                         local schm = tostring(vim.g.colors_name)
                         if schm == "visual_studio_code" or schm == "vscode" then
-                            vim.api.nvim_set_hl(0, "StatusLine", { bg = "#1e1e1e" })
                             return "vscode_lualine"
                         else
                             return "auto"
@@ -75,6 +76,8 @@ return {
                     icons_enabled = true,
                     component_separators = "",
                     section_separators = "",
+                    always_show_tabline = false,
+                    globalstatus = false,
                 },
                 sections = {
                     lualine_a = {
@@ -94,7 +97,8 @@ return {
                             path = 1
                         },
                     },
-                    lualine_x = {
+                    lualine_x = {},
+                    lualine_y = {
                         {
                             "space_style",
                             fmt = function(content, context)
@@ -112,8 +116,8 @@ return {
                             icons_enabled = false,
                             fmt = function(content, context)
                                 local style = {
-                                    mac = "LF",
-                                    unix = "LF",
+                                    mac = "CR",
+                                    unix = "",
                                     dos = "CRLF",
                                 }
                                 return style[content]
@@ -124,7 +128,6 @@ return {
                             colored = false,
                         },
                     },
-                    lualine_y = {},
                     lualine_z = {
                         {
                             "progress",
@@ -147,6 +150,14 @@ return {
                         { custom_location },
                     },
                 },
+                --tabline = {
+                --    lualine_a = {"buffers"},
+                --    lualine_b = {},
+                --    lualine_c = {"branch"},
+                --    lualine_x = {},
+                --    lualine_y = {},
+                --    lualine_z = {"tabs"}
+                --},
             })
         end,
     },
