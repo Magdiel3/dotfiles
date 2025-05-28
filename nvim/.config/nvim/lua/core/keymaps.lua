@@ -41,6 +41,9 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yank
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<C-c>", ":nohl<CR>", { desc = "Clear search highlight", silent = true })
 
+-- ctrl s to escape editing and save dile
+vim.keymap.set({ "n", "i" }, "<C-s>", "<Esc><CMD>w<CR>", { desc = "Exit editing and save", silent = true })
+
 -- Unmaps Q in normal mode (seems like an old functionality hard to exit)
 vim.keymap.set("n", "Q", "<nop>")
 

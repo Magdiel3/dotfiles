@@ -13,7 +13,9 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.showbreak = "󱞵 "
 
 --vim.opt.swapfile = false
 --vim.opt.backup = false
@@ -29,7 +31,9 @@ vim.opt.inccommand = "split"
 vim.opt.termguicolors = true
 --vim.opt.background = "dark"
 
-vim.opt.scrolloff = 6
+-- minor aesthetics
+vim.opt.showmode = false
+vim.opt.scrolloff = 3
 vim.opt.signcolumn = "yes"
 
 -- backspace
@@ -50,3 +54,11 @@ vim.opt.hlsearch = true
 
 -- for easy mouse resizing, just incase
 vim.opt.mouse = "a"
+
+-- Make trailing spaces and tabs visible
+vim.opt.list = true
+vim.opt.listchars = {
+    tab = "» ",
+    trail = "·",
+    nbsp = "󱁐"
+}

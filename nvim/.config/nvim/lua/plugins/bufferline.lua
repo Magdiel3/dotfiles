@@ -6,6 +6,7 @@ return {
         local bufferline = require("bufferline")
         bufferline.setup({
             options = {
+                mode = "buffers",
                 themable = true,
                 separator_style = "thick",
                 style_preset = {
@@ -35,6 +36,12 @@ return {
             "<M-9>",
             "<Cmd>BufferLineGoToBuffer -1 <CR>",
             { noremap = true, silent = true, desc = "Show last buffer tab" }
+        )
+        vim.keymap.set(
+            "n",
+            "<M-w>",
+            "<Cmd>bd<CR>",
+            { noremap = true, silent = true, desc = "Delete current buffer" }
         )
     end,
 }
