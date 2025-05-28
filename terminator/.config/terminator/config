@@ -4,6 +4,7 @@
   scroll_tabbar = True
   homogeneous_tabbar = False
 [keybindings]
+  layout_launcher = ""
 [profiles]
   [[default]]
     background_color = "#1c1c1c"
