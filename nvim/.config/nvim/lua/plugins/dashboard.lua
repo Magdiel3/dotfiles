@@ -76,12 +76,23 @@ return {
     dashboard.section.header.val = pick_banner
     dashboard.section.header.opts.hl = "AlphaHeader"
 
-    dashboard.section.buttons.val = {
-      dashboard.button("n", "  New file", ":ene <BAR> startinsert<CR>"),
-      dashboard.button("o", "󰈞  Open file", ":FzfLua files<CR>"),
-      dashboard.button("r", "  Recent files", ":FzfLua oldfiles<CR>"),
-      dashboard.button("q", "  Quit", ":qa<CR>"),
-    }
+    local function get_buttons()
+        local buttons = {
+            dashboard.button("n", "  New file", ":ene <BAR> startinsert<CR>"),
+            dashboard.button("o", "󰈞  Open file", ":FzfLua files<CR>"),
+            dashboard.button("r", "  Recent files", ":FzfLua oldfiles<CR>"),
+            dashboard.button("q", "  Quit", ":qa<CR>"),
+        }
+
+        -- TODO: Make this recalculate the height on each new re-rendering
+        if vim.api.nvim_win_get_height(0) > 50 then
+            table.insert(buttons, 3, dashboard.button("g", "󰱽 " .. " Grep in Files", ":FzfLua live_grep<CR>"))
+        end
+
+        return buttons
+    end
+
+    dashboard.section.buttons.val = get_buttons()
     dashboard.section.buttons.opts.hl = "AlphaButtons"
 
     local function get_nvim_load_time()
