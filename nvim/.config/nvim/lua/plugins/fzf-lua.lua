@@ -1,5 +1,6 @@
 return {
     "ibhagwan/fzf-lua",
+    lazy = false,   -- Get this loaded since startup
     dependencies = { "nvim-tree/nvim-web-devicons" },
     --dependencies = { "echasnovski/mini.icons" },
     opts = {},

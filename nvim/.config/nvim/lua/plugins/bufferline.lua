@@ -37,12 +37,13 @@ return {
             "<Cmd>BufferLineGoToBuffer -1 <CR>",
             { noremap = true, silent = true, desc = "Show last buffer tab" }
         )
-        vim.keymap.set(
-            "n",
-            "<M-w>",
-            "<Cmd>bd<CR>",
-            { noremap = true, silent = true, desc = "Delete current buffer" }
-        )
+        -- This functionality was moved into the dashboard section
+        -- vim.keymap.set(
+        --     "n",
+        --     "<M-w>",
+        --     "<Cmd>bd<CR>",
+        --     { noremap = true, silent = true, desc = "Delete current buffer" }
+        -- )
     end,
 }
 
