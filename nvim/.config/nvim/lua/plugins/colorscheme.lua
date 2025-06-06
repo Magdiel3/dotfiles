@@ -14,6 +14,8 @@ return {
                         require("visual_studio_code.utils").hl.bulk_set({
                             StatusLine = { fg = "#a6a6a6", bg = "#3a3d41" },
                             StatusLineNC = { link = "StatusLine" },
+                            CursorLine = { bg = "#252526" },
+                            BlinkCmpGhostText = { link = "LineNr" },
                         })
                     end,
                 }
