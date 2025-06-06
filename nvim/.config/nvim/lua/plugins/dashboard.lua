@@ -144,6 +144,8 @@ return {
             if #vim.fn.getbufinfo({ buflisted = 1}) == 1 then
                 vim.cmd("bd")
                 require("alpha").start(true)
+            else
+                vim.cmd("bd")
             end
         end,
         { noremap = true, silent = true, desc = "Delete current buffer" }
