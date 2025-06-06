@@ -49,7 +49,7 @@ vim.opt.colorcolumn = "100"
 
 -- clipboard
 -- Ingoring in favor of more control on what gets copied
---vim.opt.clipboard:append("unnamedplus") --use system clipboard as default
+vim.opt.clipboard:append("unnamedplus") --use system clipboard as default
 vim.opt.hlsearch = true
 
 -- for easy mouse resizing, just incase
