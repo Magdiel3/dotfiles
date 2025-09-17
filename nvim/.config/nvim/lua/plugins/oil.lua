@@ -4,7 +4,8 @@ return {
     config = function()
         require("oil").setup({
             default_file_explorer = true,
-            columns = { "icon", "permissions", "size" },
+            -- columns = { "icon", "permissions", "size" },
+            columns = { "icon", },
             delete_to_trash = true,
             view_options = {
                 show_hidden = true,
@@ -12,8 +13,14 @@ return {
             skip_confirm_for_simple_edits = true,
             float = {
                 max_width = 100,
-                max_height = 20,
+                max_height = 40,
                 border = "rounded",
+            },
+            preview_win = {
+                win_options = {
+                    wrap = false,
+                    foldenable = false,
+                }
             },
         })
         -- Open parent dir over current active window

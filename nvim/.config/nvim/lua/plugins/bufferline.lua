@@ -13,7 +13,7 @@ return {
                     bufferline.style_preset.no_italic,
                 },
                 buffer_close_icon = "",
-                indicator = { style = "underline" },
+                indicator = { style = "none" },
             },
         })
         -- Bind tab switching with Alt+TabPosition
