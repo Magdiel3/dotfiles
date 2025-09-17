@@ -22,10 +22,21 @@ return {
                     foldenable = false,
                 }
             },
+            keymaps = {
+                ["<C-s>"] = false, -- Use C-s to save changes
+                ["q"] = "actions.close", -- Close Oil
+            }
         })
         -- Open parent dir over current active window
         vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
         -- Open parent dir in float window
         vim.keymap.set("n", "<leader>-", require("oil").toggle_float)
+
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "oil", -- Adjust if Oil uses a specific file type identifier
+            callback = function()
+                vim.opt_local.cursorline = true
+            end,
+        })
     end,
 }

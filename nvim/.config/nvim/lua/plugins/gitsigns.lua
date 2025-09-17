@@ -47,6 +47,13 @@ return {
                         icon = { icon = "", color = "red"},
                     },
                     {
+                        "<leader>gs",
+                        function()
+                            require('gitsigns').blame_line({full=true,})
+                        end,
+                        desc = "Show full blame for this line",
+                    },
+                    {
                         "<leader>gd",
                         function()
                             vim.cmd("tabnew %")

@@ -8,6 +8,12 @@
       require('grug-far').setup({
         -- options, see Configuration section below
         -- there are no required options atm
-      });
-    end
+      })
+      vim.keymap.set('n', '<leader>fG', function()
+        require('grug-far').open()
+      end, { desc = '[F]ind text with [G]rugFar' })
+      vim.keymap.set('v', '<leader>fG', function()
+        require('grug-far').open()
+      end, { desc = '[F]ind text with [G]rugFar' })
+    end,
   }
