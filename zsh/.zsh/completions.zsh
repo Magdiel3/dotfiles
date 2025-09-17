@@ -10,7 +10,7 @@ zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}'
 zstyle ':completion:*' match-original only
 zstyle ':completion:*' max-errors 1
-zstyle ':completion:*' menu select=long-list select=2
+zstyle ':completion:*' menu select=long-list select=10
 zstyle ':completion:*' original false
 zstyle ':completion:*' preserve-prefix '//[^/]##/'
 zstyle ':completion:*' prompt 'Did you meant...? (%e errors)'

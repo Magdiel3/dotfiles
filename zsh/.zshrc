@@ -1,13 +1,23 @@
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
 alias v="nvim"
 alias tree="tree -I .git -a"
+alias bat="/usr/bin/batcat"
+alias ta="tmux a"
 
 # Capture double jj in --input-- mode to exit to normal
 function vi-jj-exit() {
@@ -34,3 +44,43 @@ COMPLETIONS_FILE="${HOME}/.zsh/completions.zsh"
 # Source the Pure prompt
 PROMPT_SETUP_FILE="${HOME}/.zsh/prompt_setup.zsh"
 [[ -f $PROMPT_SETUP_FILE ]] && source ${PROMPT_SETUP_FILE}
+
+# Source the graphite autocompletion script
+GRAPHITE_COMPLETION_SCRIPT="${HOME}/.zsh/gh_completion.zsh"
+[[ -f $GRAPHITE_COMPLETION_SCRIPT ]] && source ${GRAPHITE_COMPLETION_SCRIPT}
+
+# Source the bazel completion script
+BAZEL_COMPLETION_SCRIPT="${HOME}/.zsh/bazel_completion.zsh"
+[[ -f $BAZEL_COMPLETION_SCRIPT ]] && source ${BAZEL_COMPLETION_SCRIPT}
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Load the SSH agent if not already running
+env=~/.ssh/agent.env
+
+agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+
+agent_start () {
+    (umask 077; ssh-agent >| "$env")
+    . "$env" >| /dev/null ; }
+
+agent_load_env
+
+# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
+agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+    agent_start
+    ssh-add
+elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+    ssh-add
+fi
+
+unset env
+
+export PATH=$PATH:/usr/local/go/bin
+
+. "$HOME/.local/bin/env"
