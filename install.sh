@@ -9,7 +9,7 @@ set -euo pipefail
 REPO_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 TOOLS_DIR="$HOME/.local/share/dotfiles/tools"
 BIN_DIR="$HOME/.local/bin"
-COMPONENTS=(nvim tmux zsh starship tldr)
+COMPONENTS=(nvim tmux zsh starship tldr hunk)
 PACKAGES=()
 while IFS= read -r package; do
     [[ -z "$package" || "$package" == \#* ]] && continue

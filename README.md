@@ -58,7 +58,7 @@ Downloads need access to GitHub, Node.js, and npm.
 | npm | 8.0.0 |
 | Tree-sitter CLI | 0.26.1 |
 
-Only the five core Stow packages are linked. Desktop terminal configs are optional.
+The core Stow packages and optional Hunk configuration are linked. Desktop terminal configs are optional.
 The installer uses `--no-folding` so configuration directories remain real
 directories rather than links to whole repository folders.
 
@@ -224,6 +224,20 @@ GitHub login caches, and private development tools are not provisioned.
 OpenCode, Hunk, Graphite, Rust, and Go are optional. Their shell hooks do not
 imply that the installer installs them.
 
+### Optional Hunk setup
+
+Install [Hunk](https://github.com/modem-dev/hunk) separately, then install the
+commit review extension:
+
+```bash
+hunk extension install sadick254/hunk-commit-log@6a08a018bac73924bbc6c2e29008da2160739fcf
+```
+
+The extension checkout stays outside this repository. The local Hunk extension
+starts its commit list and message panes hidden. In `hunk show`, use `h` for
+the commit list, `Alt+i` for the message, `I` to expand it, `p` for the
+previous commit, and `P` for the next. Search keeps `n` for the next match.
+
 ### Optional Copilot usage recording
 
 The tmux dashboard can fetch usage through authenticated `gh`. Its GitHub endpoint
@@ -280,8 +294,8 @@ to omit the repository's default branch from session labels.
 From the repository root:
 
 ```bash
-stow --no-folding --target="$HOME" nvim tmux zsh starship tldr
-stow --delete --target="$HOME" nvim tmux zsh starship tldr
+stow --no-folding --target="$HOME" nvim tmux zsh starship tldr hunk
+stow --delete --target="$HOME" nvim tmux zsh starship tldr hunk
 ```
 
 `terminator` is an optional Linux desktop terminal configuration.
