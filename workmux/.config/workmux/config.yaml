@@ -6,4 +6,4 @@ status_format: false
 
 dashboard:
   sort_mode: priority
-  agent_columns: [number, project, worktree, window, status, time, title]
+  agent_columns: [number, project, worktree, pr, window, status, time, title]
