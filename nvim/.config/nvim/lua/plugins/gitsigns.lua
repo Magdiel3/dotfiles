@@ -9,6 +9,10 @@ return {
                         winbar_info = false,
                         disable_diagnostics = true,
                     },
+                    merge_tool = {
+                        layout = 'diff3',
+                        disable_diagnostics = true,
+                    },
                 },
             },
             keys = {
@@ -72,6 +76,25 @@ return {
                         "<CMD>Gitsigns toggle_word_diff<CR>",
                         desc = "Toggle highlighting character diff",
                         icon = { icon = "", color = "red"},
+                    },
+                    {
+                        "<leader>gc",
+                        function()
+                            require('fzf-lua').git_commits({
+                                actions = {
+                                    ['default'] = function(selected)
+                                        if not selected or #selected == 0 then return end
+                                        local hash = selected[1]:match('^(%S+)')
+                                        if hash then
+                                            require('diffview')
+                                            vim.cmd('DiffviewOpen ' .. hash .. '^..' .. hash)
+                                        end
+                                    end,
+                                },
+                            })
+                        end,
+                        desc = "Open DiffView for a commit",
+                        icon = { icon = "", color = "red" },
                     },
                 })
             end,
