@@ -100,5 +100,11 @@ export PATH=$PATH:/usr/local/go/bin
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
 
+# Copilot CLI keychain/keyring integration
+# Install with `sudo apt install gnome-keyring libsecret-tools`
+if command -v gnome-keyring-daemon >/dev/null 2>&1; then
+    eval "$(gnome-keyring-daemon --start --components=secrets)"
+fi
+
 # Hunk (https://hunk.dev)
 export PATH="$HOME/.hunk/bin:$PATH"
