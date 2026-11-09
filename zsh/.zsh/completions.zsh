@@ -18,7 +18,7 @@ zstyle ':completion:*' select-prompt '%B[%l] Use arrow keys to select (%p done.%
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' verbose true
-zstyle :compinstall filename '/home/magdiel.martinez/.zsh/completions.zsh'
+zstyle :compinstall filename "$HOME/.zsh/completions.zsh"
 
 autoload -Uz compinit
 compinit

@@ -3,13 +3,16 @@ return {
         'nvim-treesitter/nvim-treesitter',
         lazy = false,
         build = ':TSUpdate',
-        config = function()
-            -- Install parsers (no-op if already installed)
-            require('nvim-treesitter').install({
+        opts = {
+            parsers = {
                 'bash', 'c', 'diff', 'html', 'lua', 'luadoc',
                 'markdown', 'markdown_inline', 'python', 'query',
                 'vim', 'vimdoc',
-            })
+            },
+        },
+        config = function(_, opts)
+            -- Install parsers (no-op if already installed)
+            require('nvim-treesitter').install(opts.parsers)
 
             -- Enable treesitter highlighting for any filetype that has a parser
             vim.api.nvim_create_autocmd('FileType', {
