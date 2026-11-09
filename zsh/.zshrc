@@ -81,6 +81,10 @@ fi
 
 unset env
 
+# Keep private and machine-specific settings outside this repository.
+LOCAL_ZSHRC_KEYS_FILE="${HOME}/.zshrc_local"
+[[ -f "$LOCAL_ZSHRC_KEYS_FILE" ]] && source "$LOCAL_ZSHRC_KEYS_FILE"
+
 export PATH=$PATH:/usr/local/go/bin
 
 . "$HOME/.local/bin/env"
