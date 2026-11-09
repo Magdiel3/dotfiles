@@ -235,7 +235,7 @@ hunk extension install sadick254/hunk-commit-log@6a08a018bac73924bbc6c2e29008da2
 
 The extension checkout stays outside this repository. The local Hunk extension
 starts its commit list and message panes hidden. In `hunk show`, use `h` for
-the commit list, `Alt+i` for the message, `I` to expand it, `p` for the
+the commit list, `i` for the message, `I` to expand it, `p` for the
 previous commit, and `P` for the next. Search keeps `n` for the next match.
 
 ### Optional Copilot usage recording
