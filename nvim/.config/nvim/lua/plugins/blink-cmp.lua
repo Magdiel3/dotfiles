@@ -50,13 +50,19 @@ return {
       return not vim.tbl_contains({ "copilot-chat", "copilot-overview" }, vim.bo.filetype)
     end,
 
+    cmdline = { sources = { 'cmdline' } },
     keymap = {
-      preset = 'super-tab',
-      ['<C-j>'] = { 'select_next', 'fallback' },
-      ['<C-k>'] = { 'select_prev', 'fallback' },
-      ['<C-n>'] = { 'fallback' },
-      ['<C-p>'] = { 'fallback' },
+      preset = 'enter',
+      ['<S-Tab>'] = { 'select_prev', 'fallback' },
+      ['<Tab>'] = { 'select_next', 'fallback' },
     },
+    -- keymap = {
+    --   preset = 'super-tab',
+    --   ['<C-j>'] = { 'select_next', 'fallback' },
+    --   ['<C-k>'] = { 'select_prev', 'fallback' },
+    --   ['<C-n>'] = { 'fallback' },
+    --   ['<C-p>'] = { 'fallback' },
+    -- },
 
     appearance = {
       nerd_font_variant = 'mono'

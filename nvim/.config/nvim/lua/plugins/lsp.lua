@@ -7,7 +7,7 @@ return {
         -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
         -- Allows extra capabilities provided by blink.cmp
-        'saghen/blink.cmp',
+        -- 'saghen/blink.cmp',
     },
     config = function()
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -135,8 +135,6 @@ return {
                     completion = {
                         callSnippet = 'Replace',
                     },
-                    -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                    -- diagnostics = { disable = { 'missing-fields' } },
                 },
             },
         },
