@@ -18,6 +18,8 @@ alias v="nvim"
 alias tree="tree -I .git -a"
 alias bat="/usr/bin/batcat"
 alias ta="tmux a"
+alias inv="./invoke"
+alias hs="hunk show"
 
 # Capture double jj in --input-- mode to exit to normal
 function vi-jj-exit() {
@@ -88,3 +90,8 @@ LOCAL_ZSHRC_KEYS_FILE="${HOME}/.zshrc_local"
 export PATH=$PATH:/usr/local/go/bin
 
 . "$HOME/.local/bin/env"
+
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# Hunk (https://hunk.dev)
+export PATH="$HOME/.hunk/bin:$PATH"
