@@ -56,6 +56,11 @@ return {
             desc="[F]ind in neovim [C]onfiguration"
         },
         {
+            "<leader>fH",
+            function() require('fzf-lua').commands() end,
+            desc="[F]ind in neovim commands ([H]elp?)"
+        },
+        {
             "<leader>fh",
             function() require("fzf-lua").helptags({
                 actions   = {
@@ -91,6 +96,14 @@ return {
                 require("fzf-lua").grep_cword()
             end,
             desc = "[F]ind current [W]ord",
+        },
+        {
+            "<leader>fw",
+            function()
+                require("fzf-lua").grep_visual()
+            end,
+            mode = "x",
+            desc = "[F]ind visual selection",
         },
         {
             "<leader>fW",
