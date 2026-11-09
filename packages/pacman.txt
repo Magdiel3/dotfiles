@@ -1,0 +1,20 @@
+# Base dependencies for manual adoption on Arch Linux.
+ca-certificates
+curl
+git
+stow
+tmux
+zsh
+base-devel
+python
+python-pip
+unzip
+xz
+ripgrep
+fd
+bat
+ncurses
+xclip
+wl-clipboard
+gnome-keyring
+libsecret
