@@ -5,24 +5,40 @@
       {
         "type": "command",
         "bash": "workmux register-agent"
+      },
+      {
+        "type": "command",
+        "bash": "bash \"$HOME/.config/tmux/copilot_attention.sh\" working"
       }
     ],
     "userPromptSubmitted": [
       {
         "type": "command",
         "bash": "workmux set-window-status working"
+      },
+      {
+        "type": "command",
+        "bash": "bash \"$HOME/.config/tmux/copilot_attention.sh\" working"
       }
     ],
     "postToolUse": [
       {
         "type": "command",
         "bash": "workmux set-window-status working"
+      },
+      {
+        "type": "command",
+        "bash": "bash \"$HOME/.config/tmux/copilot_attention.sh\" working"
       }
     ],
     "postToolUseFailure": [
       {
         "type": "command",
         "bash": "workmux set-window-status working"
+      },
+      {
+        "type": "command",
+        "bash": "bash \"$HOME/.config/tmux/copilot_attention.sh\" working"
       }
     ],
     "notification": [
@@ -30,12 +46,21 @@
         "type": "command",
         "matcher": "permission_prompt|elicitation_dialog",
         "bash": "workmux set-window-status waiting"
+      },
+      {
+        "type": "command",
+        "matcher": "permission_prompt|elicitation_dialog",
+        "bash": "bash \"$HOME/.config/tmux/copilot_attention.sh\" waiting"
       }
     ],
     "agentStop": [
       {
         "type": "command",
         "bash": "workmux set-window-status done"
+      },
+      {
+        "type": "command",
+        "bash": "bash \"$HOME/.config/tmux/copilot_attention.sh\" done"
       }
     ]
   }

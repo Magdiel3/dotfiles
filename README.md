@@ -303,6 +303,13 @@ Manual registration makes the pane visible but does not load hooks into its
 running Copilot process. Automatic status updates require a new or restarted
 Copilot session.
 
+The existing clock turns yellow while any Copilot pane is waiting for input,
+green for completed responses in panes you have not visited, and blue otherwise.
+Yellow takes priority. Visiting a pane acknowledges its completed response.
+Waiting clears when Copilot resumes, not simply when you visit its pane.
+The indicator spans this tmux server's sessions and remains visible while zoomed.
+Restart idle Copilot processes after changing the personal hooks to load them.
+
 Workmux defaults to session mode if you choose to create worktrees through it.
 It leaves existing window names and status-bar styling intact. To unlink the
 configuration and hooks:
