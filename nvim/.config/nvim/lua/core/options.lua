@@ -62,3 +62,9 @@ vim.opt.listchars = {
     trail = "·",
     nbsp = "󱁐"
 }
+
+vim.filetype.add({
+  pattern = {
+    ['.*%.py%.jinja'] = 'python',
+  },
+})
