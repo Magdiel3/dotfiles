@@ -1,0 +1,13 @@
+[Unit]
+Description=Record GitHub Copilot premium usage to ~/.copilot_usage
+After=network-online.target
+
+[Service]
+Type=oneshot
+Environment=GH_PROMPT_DISABLED=1
+ExecStart=/bin/bash %h/.config/tmux/copilot_usage.sh --record
+# Exit 1 means the API was unreachable. Treat it as a quiet skip, not a unit failure.
+SuccessExitStatus=1
+TimeoutStartSec=60
+StandardInput=null
+StandardOutput=null
