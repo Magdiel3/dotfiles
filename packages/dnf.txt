@@ -1,0 +1,23 @@
+# Base dependencies for manual adoption on Fedora.
+ca-certificates
+curl
+git
+stow
+tmux
+zsh
+gcc
+gcc-c++
+make
+pkgconf-pkg-config
+python3
+python3-pip
+unzip
+xz
+ripgrep
+fd-find
+bat
+ncurses-term
+xclip
+wl-clipboard
+gnome-keyring
+libsecret

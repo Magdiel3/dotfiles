@@ -1,0 +1,21 @@
+# Ubuntu, Debian, Raspberry Pi OS, and compatible apt-based distributions.
+ca-certificates
+curl
+git
+stow
+tmux
+zsh
+build-essential
+pkg-config
+python3
+python3-venv
+unzip
+xz-utils
+ripgrep
+fd-find
+bat
+ncurses-term
+xclip
+wl-clipboard
+gnome-keyring
+libsecret-tools

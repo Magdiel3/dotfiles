@@ -21,6 +21,8 @@ alias ta="tmux a"
 alias inv="./invoke"
 alias hs="hunk show"
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # Capture double jj in --input-- mode to exit to normal
 function vi-jj-exit() {
   # If the last two characters were 'j' and 'j', exit to normal mode
@@ -62,7 +64,11 @@ OPENCODE_COMPLETION_SCRIPT="${HOME}/.zsh/opencode_completion.zsh"
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ -f "$HOME/.fzf.zsh" ]]; then
+    source "$HOME/.fzf.zsh"
+elif command -v fzf >/dev/null 2>&1; then
+    eval "$(fzf --zsh)"
+fi
 
 # Load the SSH agent if not already running
 env=~/.ssh/agent.env
@@ -93,7 +99,7 @@ LOCAL_ZSHRC_KEYS_FILE="${HOME}/.zshrc_local"
 
 export PATH=$PATH:/usr/local/go/bin
 
-. "$HOME/.local/bin/env"
+[[ -f "$HOME/.local/bin/env" ]] && source "$HOME/.local/bin/env"
 
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
