@@ -282,27 +282,30 @@ stow --no-folding --target="$HOME" workmux
 tmux source-file ~/.config/tmux/tmux.conf
 ```
 
-No sidebar is enabled. The dashboard shows registered agent panes across all
-sessions, including multiple Copilot panes sharing one worktree. Sessionx remains
-the picker for all tmux sessions. Workmux defaults to session mode for future
-worktrees and leaves the existing window names and status-bar styling intact.
+The sidebar stays off until toggled with `Ctrl+b`, then `B`. It appears only in
+the current tmux session but shows agents across all sessions. Press `f` inside
+the sidebar, or `Shift+F` in the dashboard, to toggle the session filter.
+The sidebar requires a tmux 3.3 or newer server for its `window-resized` hook.
+On older servers, the shortcut shows a compatibility message instead.
+The dashboard works on the existing tmux 3.2a server. Sessionx remains the picker
+for all tmux sessions.
 
 Start a new Copilot session, or use `/restart` in an existing one, to load the
 hooks. They report working, waiting for permission or input, and turn completion.
 Avoid restarting an agent while it is working. Select a dashboard row and press
 `Enter` to visit its pane, `p` to preview it, or `i` to forward input.
 
-To list already running Copilot panes without restarting them, run this from a
-shell in tmux, replacing `%32` with the target pane ID:
-
-```bash
-tmux list-panes -a -F '#S:#I.#P #{pane_id} #{pane_current_command}'
-TMUX_PANE=%32 workmux register-agent
-```
-
+Keep creating tmux sessions and panes yourself. Starting Copilot in any pane
+registers it automatically. For an already running Copilot pane, focus it and
+press `Ctrl+b`, then `P` to register it without looking up its pane ID.
+Multiple Copilot panes sharing one worktree appear as separate dashboard rows.
 Manual registration makes the pane visible but does not load hooks into its
 running Copilot process. Automatic status updates require a new or restarted
-Copilot session. To unlink the configuration and hooks:
+Copilot session.
+
+Workmux defaults to session mode if you choose to create worktrees through it.
+It leaves existing window names and status-bar styling intact. To unlink the
+configuration and hooks:
 
 ```bash
 stow --delete --target="$HOME" workmux
@@ -325,7 +328,8 @@ Neovim uses `Space` as the leader key.
 | tmux | `Ctrl+b`, then `H` | Show GitHub connectivity and latency |
 | tmux | `Ctrl+b`, then `g` / `G` | Show Copilot usage / daily history |
 | tmux | `Ctrl+b`, then `W` | Open the Workmux agent dashboard |
-| tmux | `Ctrl+b`, then `Ctrl+w` | Show agents in the current tmux session |
+| tmux | `Ctrl+b`, then `B` | Toggle the sidebar in the current session |
+| tmux | `Ctrl+b`, then `P` | Register the focused Copilot pane |
 | tmux | `Ctrl+b`, then `Ctrl+l` | Jump to a waiting or completed agent |
 
 The session picker uses a personal
