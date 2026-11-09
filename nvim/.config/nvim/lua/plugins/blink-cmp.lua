@@ -50,13 +50,19 @@ return {
       return not vim.tbl_contains({ "copilot-chat", "copilot-overview" }, vim.bo.filetype)
     end,
 
+    cmdline = { sources = { 'cmdline' } },
     keymap = {
-      preset = 'super-tab',
-      ['<C-j>'] = { 'select_next', 'fallback' },
-      ['<C-k>'] = { 'select_prev', 'fallback' },
-      ['<C-n>'] = { 'fallback' },
-      ['<C-p>'] = { 'fallback' },
+      preset = 'enter',
+      ['<S-Tab>'] = { 'select_prev', 'fallback' },
+      ['<Tab>'] = { 'select_next', 'fallback' },
     },
+    -- keymap = {
+    --   preset = 'super-tab',
+    --   ['<C-j>'] = { 'select_next', 'fallback' },
+    --   ['<C-k>'] = { 'select_prev', 'fallback' },
+    --   ['<C-n>'] = { 'fallback' },
+    --   ['<C-p>'] = { 'fallback' },
+    -- },
 
     appearance = {
       nerd_font_variant = 'mono'
@@ -67,7 +73,11 @@ return {
         auto_show = true,
       },
       menu = {
-        auto_show = false,
+        auto_show = function()
+          -- Auto-show completion menu in CodeCompanion chat for slash commands and variables
+          -- Keep manual trigger for regular coding buffers
+          return vim.bo.filetype == "codecompanion"
+        end,
       },
       ghost_text = { enabled = true },
     },
@@ -75,7 +85,7 @@ return {
     signature = { enabled = true },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', },
+      default = { 'lsp', 'path', 'snippets', 'buffer', "codecompanion" },
       -- default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
       providers = {
         copilot = {

@@ -1,57 +1,81 @@
+vim.env["CODECOMPANION_TOKEN_PATH"] = vim.fn.expand("~/.config")
 return {
     {
-        "CopilotC-Nvim/CopilotChat.nvim",
+        "olimorris/codecompanion.nvim",
+        version = "^18.0.0",
+        enabled = true,
         dependencies = {
-            { "github/copilot.vim" },
-            { "nvim-lua/plenary.nvim", branch = "master" },
-        },
-        build = "make tiktoken",
-        opts = {
-            window = {
-                width = 0.35,
-            },
-            chat_autocomplete = true,
-            mappings = {
-                close = { insert = "" },
-            },
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "ravitemer/mcphub.nvim",
+            "ravitemer/codecompanion-history.nvim", -- history extension
         },
         config = function(_, opts)
             local wk = require("which-key")
             wk.add({
-                { "<leader>c", group = "+Copilot Chat", mode = { "n", "v" }, icon = "" },
-                { "<leader>ce", "<cmd>CopilotChatExplain<CR>", mode = "v", desc = "Explain Code", icon = "" },
-                { "<leader>cr", "<cmd>CopilotChatReview<CR>", mode = "v", desc = "Review Code", icon = "" },
-                { "<leader>cf", "<cmd>CopilotChatFix<CR>", mode = "v", desc = "Fix Code Issues", icon = "" },
-                { "<leader>co", "<cmd>CopilotChatOptimize<CR>", mode = "v", desc = "Optimize Code", icon = "" },
+                { "<leader>c", group = "+Code Companion", mode = { "n", "v" }, icon = "" },
                 {
-                    "<leader>cc",
-                    function () require("CopilotChat").toggle() end,
+                    "<leader>ci",
+                    "<cmd>CodeCompanion<CR>",
                     mode = { "n", "v" },
-                    desc = "Toggle Copilot Chat",
+                    desc = "Open Code Companion Inline",
                     icon = "",
                 },
                 {
-                    "<leader>cC",
-                    function()
-                        require("CopilotChat").open({
-                            selection = require("CopilotChat.select").buffer,
-                            highlight_selection = false,
-                        })
-                    end,
-                    desc = "Open Copilot Chat with buffer context",
+                    "<leader>cc",
+                    "<cmd>CodeCompanionChat Toggle<CR>",
+                    mode = { "n", "v" },
+                    desc = "Toggle Code Companion Chat",
+                    icon = "",
+                },
+                {
+                    "<leader>ca",
+                    "<cmd>CodeCompanionChat Add<CR>",
+                    mode = "v",
+                    desc = "Add Selection to Code Companion Chat",
                     icon = "",
                 },
             })
-            local chat = require("CopilotChat")
-            chat.setup(opts)
-            vim.api.nvim_create_autocmd('BufEnter', {
-                pattern = 'copilot-*',
-                callback = function()
-                    vim.opt_local.relativenumber = false
-                    vim.opt_local.number = false
-                    vim.opt_local.conceallevel = 0
-                end
+            require("codecompanion").setup({
+                opts = {
+                    log_level = "DEBUG",
+                },
+                interactions = {
+                    chat = {
+                        adapter = "copilot",
+                    },
+                    inline = {
+                        adapter = "copilot",
+                    },
+                },
+                extensions = {
+                    mcphub = {
+                        callback = "mcphub.extensions.codecompanion",
+                        opts = {
+                            make_vars = true,
+                            make_slash_commands = true,
+                            show_result_in_chat = true
+                        }
+                    },
+                    history = {
+                        opts = {
+                            dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
+                        }
+                    },
+                }
             })
         end,
     },
+        {
+        "ravitemer/mcphub.nvim",
+        enabled = true,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        build = "npm install -g mcp-hub@latest",  -- Installs `mcp-hub` node binary globally
+        config = function()
+            require("mcphub").setup()
+        end
+    },
+
 }

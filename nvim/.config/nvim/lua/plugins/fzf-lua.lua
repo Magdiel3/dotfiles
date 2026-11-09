@@ -3,19 +3,27 @@ return {
     lazy = false,   -- Get this loaded since startup
     dependencies = { "nvim-tree/nvim-web-devicons" },
     --dependencies = { "echasnovski/mini.icons" },
-    opts = {},
+    opts = {
+        -- Disable built-in markview/render-markdown integration in the previewer
+        -- to avoid treesitter nil-node crashes when hovering markdown files
+        previewers = {
+            builtin = {
+                render_markdown = { enabled = false },
+            },
+        },
+    },
     keys={
-        { 
+        {
             "<leader>ff",
             function() require('fzf-lua').files() end,
             desc="[F]ind [F]iles in project directory"
         },
-        { 
+        {
             "<leader>fg",
             function() require('fzf-lua').live_grep() end,
             desc="[F]ind by [G]repping in project directory"
         },
-        { 
+        {
             "<leader>fC",
             function()
                 require('fzf-lua').colorschemes({
@@ -42,10 +50,15 @@ return {
             end,
             desc="[F]ind new [C]olorscheme for neovim"
         },
-        { 
+        {
             "<leader>fc",
             function() require('fzf-lua').files({cwd=vim.fn.stdpath("config")}) end,
             desc="[F]ind in neovim [C]onfiguration"
+        },
+        {
+            "<leader>fH",
+            function() require('fzf-lua').commands() end,
+            desc="[F]ind in neovim commands ([H]elp?)"
         },
         {
             "<leader>fh",
@@ -83,6 +96,14 @@ return {
                 require("fzf-lua").grep_cword()
             end,
             desc = "[F]ind current [W]ord",
+        },
+        {
+            "<leader>fw",
+            function()
+                require("fzf-lua").grep_visual()
+            end,
+            mode = "x",
+            desc = "[F]ind visual selection",
         },
         {
             "<leader>fW",

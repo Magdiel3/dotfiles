@@ -18,6 +18,8 @@ alias v="nvim"
 alias tree="tree -I .git -a"
 alias bat="/usr/bin/batcat"
 alias ta="tmux a"
+alias inv="./invoke"
+alias hs="hunk show"
 
 # Capture double jj in --input-- mode to exit to normal
 function vi-jj-exit() {
@@ -53,6 +55,10 @@ GRAPHITE_COMPLETION_SCRIPT="${HOME}/.zsh/gh_completion.zsh"
 BAZEL_COMPLETION_SCRIPT="${HOME}/.zsh/bazel_completion.zsh"
 [[ -f $BAZEL_COMPLETION_SCRIPT ]] && source ${BAZEL_COMPLETION_SCRIPT}
 
+# Source the opencode completion script
+OPENCODE_COMPLETION_SCRIPT="${HOME}/.zsh/opencode_completion.zsh"
+[[ -f "$OPENCODE_COMPLETION_SCRIPT" ]] && source "$OPENCODE_COMPLETION_SCRIPT"
+
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
@@ -81,6 +87,24 @@ fi
 
 unset env
 
+# Keep private and machine-specific settings outside this repository.
+LOCAL_ZSHRC_KEYS_FILE="${HOME}/.zshrc_local"
+[[ -f "$LOCAL_ZSHRC_KEYS_FILE" ]] && source "$LOCAL_ZSHRC_KEYS_FILE"
+
 export PATH=$PATH:/usr/local/go/bin
 
 . "$HOME/.local/bin/env"
+
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# Copilot CLI keychain/keyring integration
+# Install with `sudo apt install gnome-keyring libsecret-tools`
+if command -v gnome-keyring-daemon >/dev/null 2>&1; then
+    eval "$(gnome-keyring-daemon --start --components=secrets)"
+fi
+
+# Hunk (https://hunk.dev)
+export PATH="$HOME/.hunk/bin:$PATH"

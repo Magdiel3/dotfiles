@@ -1,0 +1,13 @@
+[Unit]
+Description=Periodically record GitHub Copilot premium usage
+
+[Timer]
+# Every 2 hours (00:00 included) plus 23:55 to close out the day before midnight.
+OnCalendar=*-*-* 00/2:00:00
+OnCalendar=*-*-* 23:55:00
+# Run once on boot/resume if a scheduled run was missed.
+Persistent=true
+RandomizedDelaySec=60
+
+[Install]
+WantedBy=timers.target
