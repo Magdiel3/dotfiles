@@ -55,6 +55,10 @@ GRAPHITE_COMPLETION_SCRIPT="${HOME}/.zsh/gh_completion.zsh"
 BAZEL_COMPLETION_SCRIPT="${HOME}/.zsh/bazel_completion.zsh"
 [[ -f $BAZEL_COMPLETION_SCRIPT ]] && source ${BAZEL_COMPLETION_SCRIPT}
 
+# Source the opencode completion script
+OPENCODE_COMPLETION_SCRIPT="${HOME}/.zsh/opencode_completion.zsh"
+[[ -f "$OPENCODE_COMPLETION_SCRIPT" ]] && source "$OPENCODE_COMPLETION_SCRIPT"
+
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
@@ -92,6 +96,9 @@ export PATH=$PATH:/usr/local/go/bin
 . "$HOME/.local/bin/env"
 
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
 
 # Hunk (https://hunk.dev)
 export PATH="$HOME/.hunk/bin:$PATH"
